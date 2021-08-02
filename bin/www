@@ -1,0 +1,3 @@
+const runnerWeb = require('./runners/web');
+
+runnerWeb();

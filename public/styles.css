@@ -1,0 +1,48 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+.container {
+  max-width:50%;
+}
+.messages {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #adb5bd;
+  border-radius: 5px 5px 0 0;
+  min-height: 50px;
+  padding: 20px;
+  background-color: rgb(35, 78, 78);
+}
+.msgInput {
+  transform: translate3d(0, -10px, 0)
+}
+.sendMsgBtn {
+  cursor: pointer;
+}
+.newMsg {
+  background-color: rgb(73, 161, 161);
+  border-radius: 5px;
+  margin: 10px,0;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  /* width: 100%; */
+}
+.newMsg>h4,p {
+  display: inline-block;
+}
+.newMsg>p {
+  color: rgb(202, 240, 240);
+  margin: 0;
+}
+.mySms {
+  margin-left: auto;
+}
+.notMySms {
+  margin-right: auto;
+}

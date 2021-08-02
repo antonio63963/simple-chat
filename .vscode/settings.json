@@ -1,0 +1,11 @@
+{
+  "editor.semanticTokenColorCustomizations": null,
+  "editor.tabSize": 2,
+  "editor.detectIndentation": false,
+  "[yaml]": {
+  
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.autoIndent": "advanced"
+  }
+}
