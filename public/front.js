@@ -1,11 +1,12 @@
 
 console.log('works');
 const socket = io();
-const inputMsg = document.querySelector('.userMsg');
+const inputMsg = document.querySelector('#userMsg');
 const msgBtn = document.querySelector('.sendMsgBtn');
 const allMessages = document.querySelector('.messages');
 const inputName = document.querySelector('.userName');
 let userName = '';
+
 
 function delElem(id) {
   const el = document.getElementById(`${id}`);
@@ -28,7 +29,9 @@ function addMessage(data, typeMes = '') {
   const name = data.userName;
     const newMess = `
     <div class="newMsg ${typeMes}">
-    <h4>${name}</h4>
+    <div class="circleName">
+      <h6>${name}</h6>
+    </div>
     <p>${msg}</p>
     </div>
   `;
@@ -39,6 +42,7 @@ function addMessage(data, typeMes = '') {
 
 msgBtn.addEventListener('click', (e) => {
   e.preventDefault();
+  console.log(inputMsg);
   const msg = inputMsg.value;
   socket.emit('/chat', {msg, userName});
   addMessage({msg, userName}, 'mySms');
@@ -55,13 +59,13 @@ socket.on('/newMsg', data => {
 inputName.addEventListener('change', (e) => {
   userName = e.target.value;
 });
-inputMsg.addEventListener('change', (e) => {
-  socket.emit('mesHasWrote', {userName});
-});
+// inputMsg.addEventListener('change', (e) => {
+//   socket.emit('mesHasWrote', {userName});
+// });
 
-inputMsg.addEventListener('input', (e) => {
-  socket.emit('mesWriting', {userName});
-});
+// inputMsg.addEventListener('input', (e) => {
+//   socket.emit('mesWriting', {userName});
+// });
 socket.on('whoHasWrote', data => {
   delElem(data.id)
 });

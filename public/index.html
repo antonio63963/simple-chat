@@ -5,8 +5,7 @@
   <title>simple chat</title>
   <link rel='stylesheet' href='/stylesheets/style.css' />
   <!-- CSS only -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+ 
   <script src='/socket.io/socket.io.js'></script>
   <link rel="stylesheet" href="./styles.css">
 </head>
@@ -14,17 +13,46 @@
 <body>
 
   <div class="container">
-    <h1>Welcome to chat!</h1>
-    <label>
-      Enter your name:
-      <input type="text" class="userName">
-    </label>
-    <div class="messages">
-    </div>
-    <div class="input-group mb-3 msgInput">
-      <input type="text" class="form-control userMsg" placeholder="your message" aria-label="message"
-        aria-describedby="basic-addon1">
-      <span class="input-group-text sendMsgBtn" id="basic-addon1">></span>
+    <header>
+      <h1>Welcome to chat!</h1>
+      <button class="leaveBtn">leave the chat</button>
+    </header>
+    <div class="app">
+      <div class="participants">
+        <div class="participant">
+          <div class="circle partice">
+            Nik
+          </div>
+          <h4 class="userName">Nikolay</h4>
+          <div class="show typing">
+            <div class="moveTyping"></div>
+          </div>
+        </div>
+
+
+
+        <div class="participant">
+          <div class="circle partice">
+            Ann
+          </div>
+          <h4 class="userName">Anna H</h4>
+        </div>
+
+      </div>
+
+
+      <div class="bodyChat">
+          
+          <div class="messages">
+          </div>
+          <div class="userInput">
+            <textarea name="userInput" id="userMsg" rows="2"></textarea>
+            <button class="sendMsgBtn">
+              <img src="./img/arrowSend.svg" alt="">
+            </button>
+          </div>
+      
+      </div>
     </div>
   </div>
 
