@@ -1,5 +1,8 @@
 body {
   position: relative;
+  display: flex;
+  justify-content: center;
+
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   color: rgb(28, 51, 61)
@@ -15,6 +18,7 @@ h4 {
 }
 .hidden {
   display: none;
+  opacity: 0;
 }
 a {
   color: #00B7FF;
@@ -23,14 +27,15 @@ a {
 .container {
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
-  transform-origin: center, left;
+  transform-origin: center, top;
+  transform: scale(100%, 100%);
   transition: transform .4s ease-in-out;
 }
 .smallSize {
-  transform:  scale(50%, 60%);
-  /* transform: scale(50%, 60%); */
+
+  /* transform:  scale(50%, 60%) translate(-400, 0); */
+  transform: scale(50%, 60%);
 
 }
 
@@ -38,19 +43,21 @@ header {
   position: absolute;
   z-index: 3;
   display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #BF9969;
-  height: 40px;
+  height: 60px;
   padding: 10px;
   width: 700px;
   border-radius: 5px 5px 0 0;
   transform-origin: top, center;
-  transition: transform .4s ease-in-out;
+  box-shadow: 0px 4px 8px -4px rgba(34, 60, 80, 0.48);
   transition: height .4s ease-in-out;
 
 }
 .startHeader {
   height: 250px;
-  transform: translate3d(0, 250px, 0);
+  /* transform: translate3d(0, 250px, 0); */
 }
 .loginForm {
   margin-left: auto;
@@ -71,7 +78,9 @@ header {
   border-radius: 3px;
   background-color: #D9B166;
   margin-left: auto;
+  padding: 10px;
   color: rgb(28, 51, 61);
+  transition: all 1s ease-in-out 0.4s;
 }
 
 .app {
@@ -86,6 +95,7 @@ header {
 
 /* have to animate */
 .participants {
+  padding-top: 60px;
   height: 100%;
   background-color: rgb(28, 51, 61);
   display: flex;
@@ -93,7 +103,7 @@ header {
   justify-content: flex-start;
   width: 200px;
   height: 100%;
-  border-radius: 0 0 0 5px;
+  border-radius: 5px 0 0 5px;
   color: #d1dde4;
   transform-origin: left bottom;
   transition: transform .4s ease-in-out;
@@ -143,6 +153,7 @@ header {
 
 /* =========MEssages============== */
 .messages {
+  border-radius: 0 5px 0 0;
   display: flex;
   flex-direction: column;
   width: 500px;
@@ -217,12 +228,7 @@ button {
 /* ========LOGIN=========== */
 
 form[name="chatLogin"]{
-  position: absolute;
-  top: 50vh;
-  bottom: 50vh;
-  left: 50vw;
-  right: 50vw;
-  left: 630px;
+  transform: translate3d(475px, 125px, 0);
   z-index: 2;
   display: flex;
   flex-direction: column;
@@ -236,4 +242,14 @@ form[name="chatLogin"]{
 }
 form h3, .userName, input[type="file"], button[type="submit"]{
   margin: 10px ;
+}
+
+/* animation */
+.titleHeader {
+  transition: all 1s ease-in-out 0.2s;
+}
+
+.upMove {
+  transform: translate3d(0, 15px, 0);
+  opacity: 0;
 }

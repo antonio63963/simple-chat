@@ -10,19 +10,34 @@
 
 <body>
 
-  <div class="container">
-    <header>
-      <h1>Welcome to chat!</h1>
+  <form name="chatLogin" class="formLogin">
+    <h3>LOGIN</h3>
+    <label>
+      Enter your name:
+      <input type="text" class="userName" placeholder="Nikolay">
+    </label>
 
-      <div class="loginForm">
+    <label>
+      Send your photo:
+      <input type="file" name="filedata" />
+    </label>
+
+    <button type="submit" class="submitForm">Submit</button>
+  </form>
+
+  <div class="container smallSize">
+    <header class="startHeader">
+      <h1 class="titleHeader upMove">Welcome to chat!</h1>
+
+      <!-- <div class="loginForm ">
         <input type="text" class="userName">
         <button class="submitName">submit</button>
-      </div>
+      </div> -->
 
-      <button class="leaveBtn hidden">leave the chat</button> 
+      <button class="leaveBtn upMove">leave the chat</button> 
     </header>
     <div class="app">
-      <div class="participants">
+      <div class="participants startParticipants">
         <div class="participant">
           <div class="circle partice">
             Nik

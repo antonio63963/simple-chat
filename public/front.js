@@ -1,6 +1,6 @@
 
 console.log('works');
-// const socket = io();
+const socket = io();
 const inputMsg = document.querySelector('#userMsg');
 const msgBtn = document.querySelector('.sendMsgBtn');
 const allMessages = document.querySelector('.messages');
@@ -43,25 +43,36 @@ function addMessage(data, typeMes = '') {
 
 //send- recieve new msg
 
-// msgBtn.addEventListener('click', (e) => {
-//   e.preventDefault();
-//   const msg = inputMsg.value;
-//   socket.emit('/chat', {msg, userName});
-//   addMessage({msg, userName}, 'mySms');
-//   inputMsg.value = '';
+msgBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  const msg = inputMsg.value;
+  socket.emit('/chat', {msg, userName});
+  addMessage({msg, userName}, 'mySms');
+  inputMsg.value = '';
   
-// });
+});
 
-// socket.on('/newMsg', data => {
-//   console.log(data);
-//   addMessage(data, 'notMySms');
-// });
+socket.on('/newMsg', data => {
+  console.log(data);
+  addMessage(data, 'notMySms');
+});
 
 submitForm.addEventListener('click', (e) => {
   e.preventDefault();
-  container.classList.remove('smallSize');
-  document.querySelector('header').classList.remove('startHeader');
-  document.querySelector('.participants').classList.remove('startParticipants');
+  userName = inputName.value;
+  socket.emit('userData', {userName, shortName: userName.substr(0, 2)} , (data) => {
+    if(data.status === 'success') {
+      container.classList.remove('smallSize');
+      document.querySelector('header').classList.remove('startHeader');
+      document.querySelector('.participants').classList.remove('startParticipants');
+      document.querySelector('.formLogin').style.display = 'none';
+
+      document.querySelector('.titleHeader').classList.remove('upMove');
+      document.querySelector('.leaveBtn').classList.remove('upMove');
+
+
+    }
+  })
 })
 
 

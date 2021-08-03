@@ -1,6 +1,7 @@
 const sio = require('socket.io');
 
 const msgArr = [];
+const participants = [];
 const runnerWs = (serverHttp) => {
   //=====io================================
 
@@ -15,6 +16,12 @@ const runnerWs = (serverHttp) => {
       msgArr.push(data);
       socket.broadcast.emit('/newMsg', data)
     });
+    socket.on('userData', (data, cb) => {
+      if(!data.userName) {
+        participants.push(data);
+        cb({status: 'success'});
+      }
+    })
     socket.on('mesWriting', (data) => {
       socket.broadcast.emit('whoIsWriting', {
         userName: data.userName,
