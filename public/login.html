@@ -1,18 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>enter the chat</title>
+  <title>simple chat</title>
+   <!-- CSS only -->
+  <script src='/socket.io/socket.io.js'></script>
+  <link rel="stylesheet" href="./styles.css">
 </head>
+
 <body>
-  <form>
+
+  <form name="chatLogin">
+    <h3>LOGIN</h3>
     <label>
-      Enter your name:
-      <input type="text" class="userName">
-      <button class="submitName">submit</button>
+      Enter your name: 
+      <input type="text" class="userName" placeholder="Nikolay">
     </label>
+
+    <label>
+      Send your photo: 
+      <input type="file" name="filedata" />
+    </label>
+
+    <button type="submit" class="submitForm">Submit</button>
   </form>
+  <div class="container smallSize">
+    <header class="startHeader">
+    
+    </header>
+    <div class="app">
+      <div class="participants startParticipants">
+       
+          
+
+      </div>
+
+
+      <div class="bodyChat">
+          
+          <div class="messages">
+          </div>
+          <!-- <div class="userInput">
+            <textarea name="userInput" id="userMsg" rows="2"></textarea>
+            <button class="sendMsgBtn">
+              <img src="./img/arrowSend.svg" alt="">
+            </button>
+          </div> -->
+      
+      </div>
+    </div>
+  </div>
+
+  <script src="./front.js"></script>
 </body>
+
 </html>

@@ -3,9 +3,7 @@
 
 <head>
   <title>simple chat</title>
-  <link rel='stylesheet' href='/stylesheets/style.css' />
-  <!-- CSS only -->
- 
+   <!-- CSS only -->
   <script src='/socket.io/socket.io.js'></script>
   <link rel="stylesheet" href="./styles.css">
 </head>
@@ -15,7 +13,13 @@
   <div class="container">
     <header>
       <h1>Welcome to chat!</h1>
-      <button class="leaveBtn">leave the chat</button>
+
+      <div class="loginForm">
+        <input type="text" class="userName">
+        <button class="submitName">submit</button>
+      </div>
+
+      <button class="leaveBtn hidden">leave the chat</button> 
     </header>
     <div class="app">
       <div class="participants">
@@ -25,7 +29,9 @@
           </div>
           <h4 class="userName">Nikolay</h4>
           <div class="show typing">
-            <div class="moveTyping"></div>
+            <div class="moveTyping one"></div>
+            <div class="moveTyping second"></div>
+            <div class="moveTyping third"></div>
           </div>
         </div>
 
