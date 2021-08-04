@@ -65,7 +65,7 @@ header {
 .userName {
   border: none;
   border-radius: 3px;
-  background-color: rgb(255, 255, 255, 0.4);
+  /* background-color: rgb(255, 255, 255, 0.4); */
   padding: 8px;
 }
 .submitName {
@@ -125,10 +125,12 @@ header {
 }
 .partice {
   background-color: #A0D9D9;
+  /* background-color: #A62D2D; */
   width: 30px;height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
+  /* color: #d1dde4; */
   color: #49868C;
 }
 .userName {
@@ -156,20 +158,30 @@ header {
   border-radius: 0 5px 0 0;
   display: flex;
   flex-direction: column;
+  justify-content: flex-end;
   width: 500px;
-  /* border: 1px solid #adb5bd; */
   height: 100%;
-  padding: 20px;
   background-image: url('./img/bg.svg');
   background-color: #49868C;
-  /* background-color: rgb(35, 78, 78); */
 }
-
+.allMessages {
+  padding: 20px 10px 60px 0;
+  overflow-y: auto;
+}
+.msg-title {
+  display: flex;
+  align-items: center;
+}
+.msg-title span {
+  margin-left: 15px;
+}
 #userMsg {
   /* border: none; */
   width: 100%;
   background-color: rgb(255, 255, 255, 0.5);
   color: rgb(28, 51, 61);
+  resize: none;
+  padding: 10px
 }
 .userInput {
   display: flex;
@@ -188,10 +200,7 @@ header {
   background-color: #1C333D;
   
 }
-#userMsg {
-  resize: none;
-  padding: 10px
-}
+
 .newMsg {
   /* background-color: rgb(73, 161, 161); */
   background-color: #84b9b9;
@@ -200,6 +209,7 @@ header {
   display: flex;
   flex-direction: column;
   padding: 10px;
+  margin-bottom: 15px;
   
   /* width: 100%; */
 }
@@ -220,6 +230,7 @@ p {
 
 .notMySms {
   margin-right: auto;
+  background-color: #fff;
 }
 
 button {
