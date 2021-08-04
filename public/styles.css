@@ -264,3 +264,18 @@ form h3, .userName, input[type="file"], button[type="submit"]{
   transform: translate3d(0, 15px, 0);
   opacity: 0;
 }
+.moveTyping.first{
+  animation: typing 1s infinite 0s;
+}
+.moveTyping.second{
+  animation: typing 1s infinite 0.4s;
+}
+.moveTyping.third{
+  animation: typing 1s infinite .8s;
+}
+
+@keyframes typing {
+  0% { opacity: 0}
+  50% { opacity: 1}
+  100% { opacity: 0}
+}

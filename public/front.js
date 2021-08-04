@@ -35,7 +35,7 @@ function drawParticipant(userName, shortName, id) {
     </div>
     <h4 class="userName">${userName}</h4>
     <div class="hidden typing">
-      <div class="moveTyping one"></div>
+      <div class="moveTyping first"></div>
       <div class="moveTyping second"></div>
       <div class="moveTyping third"></div>
       </div>
