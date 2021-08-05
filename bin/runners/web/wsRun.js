@@ -15,12 +15,10 @@ const runnerWs = (serverHttp) => {
         participantsArr.push({...data, id: socket.id});
         cb({status: 'success', participantsArr, id: socket.id});
         socket.broadcast.emit('newUser', {...data, id: socket.id});
+
       };
     });
     socket.on('/chat', data => {
-      const msg = data.msg;
-      console.log(data);
-      
       msgArr.push(data);
       socket.broadcast.emit('/newMsg', data)
     });
@@ -32,23 +30,12 @@ const runnerWs = (serverHttp) => {
       socket.broadcast.emit('userFinishTyping', {...data, id: socket.id});
     });
    
-    // socket.on('mesWriting', (data) => {
-    //   socket.broadcast.emit('whoIsWriting', {
-    //     userName: data.userName,
-    //     msg: '...',
-    //     id: socket.id
-    //   });
-    // });
-    // socket.on('mesHasWrote', () => {
-    //   socket.broadcast.emit('whoHasWrote', {
-    //     id: socket.id
-    //   });
-    // })
-
 
     socket.on('disconnect', () => {
       const indDelete = participantsArr.findIndex( part => part.id === socket.id);
+      console.log('before: ',participantsArr, 'index del: ', indDelete, 'id: ', socket.id);
       participantsArr.splice( indDelete, 1 );
+      console.log('after: ',participantsArr);
       socket.broadcast.emit('leaveUser', {id: socket.id});
       console.log(`Disconect ID: ${socket.id}`);
     })

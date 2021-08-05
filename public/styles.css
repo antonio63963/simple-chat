@@ -226,6 +226,7 @@ p {
 
 .mySms {
   margin-left: auto;
+  display: inline-block;
 }
 
 .notMySms {

@@ -1,31 +1,17 @@
-
-console.log('works');
 const socket = io();
 const inputMsg = document.querySelector('#userMsg');
 const msgBtn = document.querySelector('.sendMsgBtn');
 const allMessages = document.querySelector('.allMessages');
 const inputName = document.querySelector('.userName');
 const submitName = document.querySelector('.submitName');
-const submitForm = document.querySelector('.submitForm');
+const loginBtn = document.querySelector('.loginBtn');
 const container = document.querySelector('.container');
 const participants = document.querySelector('.participants');
-let allUsers = null;
 
 
 let userName = '';
 let shortName = '';
 
-
-function showWriting(data) {
-  const { id, userName, msg} = data;
-  const writer = `
-    <div id="${id}">
-    <h4>${userName}</h4>
-    <p>${msg}</p>
-    </div>
-  `;
-  allMessages.insertAdjacentHTML("beforeend", writer);
-};
 
 function drawParticipant(userName, shortName, id) {
   const template = `
@@ -69,7 +55,7 @@ function findTypingUser(id) {
 };
 
 
-submitForm.addEventListener('click', (e) => {
+loginBtn.addEventListener('click', (e) => {
   e.preventDefault();
   userName = inputName.value;
   shortName = userName.substr(0, 3);
@@ -82,11 +68,10 @@ submitForm.addEventListener('click', (e) => {
 
       document.querySelector('.titleHeader').classList.remove('upMove');
       document.querySelector('.leaveBtn').classList.remove('upMove');
-console.log(data.participantsArr);
+
       data.participantsArr.forEach(part => {
         drawParticipant(part.userName, part.shortName, part.id);
       });
-      allUsers = [...document.querySelectorAll('.participant')];
       run();
     }
   })
@@ -119,7 +104,11 @@ function run() {
   //========= LEAVE USER ============
 
   socket.on('leaveUser', data => {
-    allUsers.find( user => user.dataset.id = data.id).remove();
+    console.log('leave: ', data);
+    const allUsers = [...document.querySelectorAll('.participant')];
+    const userLeave = allUsers.find( user => user.dataset.id === data.id);
+    console.log(userLeave);
+    userLeave.remove();
   })
   
   //  ======== USER TYPING ============
@@ -145,29 +134,6 @@ function run() {
 
 }
 
-
-// whatchig for input changes
-// submitName.addEventListener('click', (e) => {
-//   e.preventDefault();
-//   userName = inputName.value;
-//   socket.emit('sendName', userName);
-// });
-// inputMsg.addEventListener('change', (e) => {
-//   socket.emit('mesHasWrote', {userName});
-// });
-
-// inputMsg.addEventListener('input', (e) => {
-//   socket.emit('mesWriting', {userName});
-// });
-// socket.on('whoHasWrote', data => {
-//   delElem(data.id)
-// });
-
-// socket.on('whoIsWriting', (data) => {
-//   if(!document.getElementById(`${data.id}`)) {
-//     showWriting(data);
-//   } 
-// });
 
 
 
