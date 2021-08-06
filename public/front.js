@@ -32,18 +32,19 @@ function drawParticipant(userName, shortName, id) {
 };
 
 function addMessage(data, typeMes = '') {
-  const { msg, userName, shortName } = data;
+  const { msg, userName } = data;
+
   console.log(data);
   const newMess = `
-    <div class="newMsg ${typeMes}">
+    <div class="newMsg ${ typeMes }">
      <div class="msg-title">
         <div class="circle partice">
-          <h6>${userName.substr(0,2)}</h6>
+          <h6>${ userName.substr(0,2) }</h6>
         </div>
-          <span>${userName}</span>
+          <span>${ userName }</span>
      </div>
-      <p>${msg}</p>
-    </div>
+      <p>${ msg }</p>
+    </div> <br>
   `;
   allMessages.insertAdjacentHTML("beforeend", newMess);
   allMessages.scrollTop = allMessages.scrollHeight;
@@ -72,6 +73,9 @@ loginBtn.addEventListener('click', (e) => {
       data.participantsArr.forEach(part => {
         drawParticipant(part.userName, part.shortName, part.id);
       });
+      data.msgArr.forEach(part => {
+        addMessage({userName: part.userName, msg: part.msg}, 'notMySms');
+      });
       run();
     }
   })
@@ -89,7 +93,6 @@ function run() {
   });
   
   socket.on('/newMsg', data => {
-    console.log(data);
     addMessage(data, 'notMySms');
   });
   

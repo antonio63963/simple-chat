@@ -237,6 +237,9 @@ p {
 button {
   border-radius: 3px;
 }
+.sendMsgBtn {
+  border-radius: 0 0 5px 0;
+}
 /* ========LOGIN=========== */
 
 form[name="chatLogin"]{

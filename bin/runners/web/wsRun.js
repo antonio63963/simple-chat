@@ -13,7 +13,7 @@ const runnerWs = (serverHttp) => {
       console.log('userData: ',data);
       if(data.userName) {
         participantsArr.push({...data, id: socket.id});
-        cb({status: 'success', participantsArr, id: socket.id});
+        cb({status: 'success', participantsArr, id: socket.id, msgArr});
         socket.broadcast.emit('newUser', {...data, id: socket.id});
 
       };
