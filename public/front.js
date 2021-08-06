@@ -7,6 +7,7 @@ const submitName = document.querySelector('.submitName');
 const loginBtn = document.querySelector('.loginBtn');
 const container = document.querySelector('.container');
 const participants = document.querySelector('.participants');
+const leaveBtn = document.querySelector('.leaveBtn');
 
 
 let userName = '';
@@ -16,15 +17,17 @@ let shortName = '';
 function drawParticipant(userName, shortName, id) {
   const template = `
     <div class="participant" data-id="${id}">
-    <div class="circle partice">
-      ${shortName}
-    </div>
-    <h4 class="userName">${userName}</h4>
-    <div class="hidden typing">
-      <div class="moveTyping first"></div>
-      <div class="moveTyping second"></div>
-      <div class="moveTyping third"></div>
+      <div class="circle partice">
+        ${shortName}
       </div>
+      <div class="userNameList">
+          <h4 class="userName">${userName}</h4>
+      </div>
+      <div class="hidden typing">
+        <div class="moveTyping first"></div>
+        <div class="moveTyping second"></div>
+        <div class="moveTyping third"></div>
+        </div>
     </div>
   `;
 
@@ -84,6 +87,9 @@ loginBtn.addEventListener('click', (e) => {
 
 //send- recieve new msg
 function run() {
+  leaveBtn.addEventListener('click', (e) => {
+    location.reload();
+  })
   msgBtn.addEventListener('click', (e) => {
     e.preventDefault();
     const msg = inputMsg.value;

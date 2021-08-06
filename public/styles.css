@@ -62,6 +62,9 @@ header {
 .loginForm {
   margin-left: auto;
 }
+.leaveBtn {
+  cursor: pointer;
+}
 .userName {
   border: none;
   border-radius: 3px;
@@ -132,6 +135,12 @@ header {
   justify-content: center;
   /* color: #d1dde4; */
   color: #49868C;
+}
+.userNameList {
+  width: 55%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .userName {
   margin-left: 10px;
@@ -258,6 +267,7 @@ form[name="chatLogin"]{
 form h3, .userName, input[type="file"], button[type="submit"]{
   margin: 10px ;
 }
+
 
 /* animation */
 .titleHeader {
