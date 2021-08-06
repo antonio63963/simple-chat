@@ -13,7 +13,10 @@ const leaveBtn = document.querySelector('.leaveBtn');
 let userName = '';
 let shortName = '';
 
-
+function removeHtmlElements(classNameRemove) {
+  const removeElemArr = [...document.querySelectorAll(`.${classNameRemove}`)];
+  removeElemArr.forEach(element => element.classList.remove(classNameRemove));
+}
 function drawParticipant(userName, shortName, id) {
   const template = `
     <div class="participant" data-id="${id}">
@@ -69,9 +72,11 @@ loginBtn.addEventListener('click', (e) => {
       document.querySelector('header').classList.remove('startHeader');
       document.querySelector('.participants').classList.remove('startParticipants');
       document.querySelector('.formLogin').style.display = 'none';
-
-      document.querySelector('.titleHeader').classList.remove('upMove');
-      document.querySelector('.leaveBtn').classList.remove('upMove');
+      document.querySelector('.titleUsername').textContent = userName;
+      removeHtmlElements('upMove')
+      // document.querySelector('.titleHeader').classList.remove('upMove');
+      // document.querySelector('.leaveBtn').classList.remove('upMove');
+      // document.querySelector()
 
       data.participantsArr.forEach(part => {
         drawParticipant(part.userName, part.shortName, part.id);
