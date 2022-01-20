@@ -14,12 +14,12 @@
     <h3>LOGIN</h3>
     <label>
       Enter your name:
-      <input type="text" class="userName" placeholder="Nikolay">
+      <input type="text" class="userName" placeholder="Nikolay" required>
     </label>
 
     <label>
-      Send your photo:
-      <input type="file" name="filedata" />
+      Choose your avatar:
+      <input type="file" name="filedata" class="userAvatar"/>
     </label>
 
     <button class="loginBtn">Submit</button>
@@ -55,7 +55,8 @@
       </div>
     </div>
   </div>
-
+  <script src="/socket.io/socket.io.js"></script>
+  
   <script src="./front.js"></script>
 </body>
 

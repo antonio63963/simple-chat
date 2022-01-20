@@ -1,22 +1,25 @@
 const socket = io();
+
 const inputMsg = document.querySelector('#userMsg');
 const msgBtn = document.querySelector('.sendMsgBtn');
 const allMessages = document.querySelector('.allMessages');
 const inputName = document.querySelector('.userName');
-const submitName = document.querySelector('.submitName');
 const loginBtn = document.querySelector('.loginBtn');
 const container = document.querySelector('.container');
 const participants = document.querySelector('.participants');
 const leaveBtn = document.querySelector('.leaveBtn');
+const fileData = document.querySelector('.userAvatar');
 
 
 let userName = '';
 let shortName = '';
+let userAvatar = null;
 
 function removeHtmlElements(classNameRemove) {
   const removeElemArr = [...document.querySelectorAll(`.${classNameRemove}`)];
   removeElemArr.forEach(element => element.classList.remove(classNameRemove));
 }
+
 function drawParticipant(userName, shortName, id) {
   const template = `
     <div class="participant" data-id="${id}">
@@ -38,7 +41,10 @@ function drawParticipant(userName, shortName, id) {
 };
 
 function addMessage(data, typeMes = '') {
-  const { msg, userName } = data;
+  const {
+    msg,
+    userName
+  } = data;
 
   console.log(data);
   const newMess = `
@@ -61,28 +67,43 @@ function findTypingUser(id) {
   return allTypings.find(user => user.parentElement.dataset.id == id);
 };
 
+function sendFile(file) {
 
+  const reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.onload = () => {
+    return reader.result;
+  };
+  reader.onerror = () => {
+    return reader.error;
+  };
+};
 loginBtn.addEventListener('click', (e) => {
   e.preventDefault();
   userName = inputName.value;
   shortName = userName.substr(0, 3);
-  socket.emit('userData', {userName, shortName} , (data) => {
-    if(data.status === 'success') {
+  
+  socket.emit('userData', {
+    userName,
+    shortName,
+    // avatar: photo
+  }, (data) => {
+    if (data.status === 'success') {
       container.classList.remove('smallSize');
       document.querySelector('header').classList.remove('startHeader');
       document.querySelector('.participants').classList.remove('startParticipants');
       document.querySelector('.formLogin').style.display = 'none';
       document.querySelector('.titleUsername').textContent = userName;
-      removeHtmlElements('upMove')
-      // document.querySelector('.titleHeader').classList.remove('upMove');
-      // document.querySelector('.leaveBtn').classList.remove('upMove');
-      // document.querySelector()
+      removeHtmlElements('upMove');
 
       data.participantsArr.forEach(part => {
         drawParticipant(part.userName, part.shortName, part.id);
       });
       data.msgArr.forEach(part => {
-        addMessage({userName: part.userName, msg: part.msg}, 'notMySms');
+        addMessage({
+          userName: part.userName,
+          msg: part.msg
+        }, 'notMySms');
       });
       run();
     }
@@ -98,19 +119,32 @@ function run() {
   msgBtn.addEventListener('click', (e) => {
     e.preventDefault();
     const msg = inputMsg.value;
-    socket.emit('/chat', {msg, userName});
-    addMessage({msg, userName, shortName}, 'mySms');
-    inputMsg.value = '';
+    if (msg) {
+      socket.emit('/chat', {
+        msg,
+        userName
+      });
+      addMessage({
+        msg,
+        userName,
+        shortName
+      }, 'mySms');
+      inputMsg.value = '';
+    }
   });
-  
+
   socket.on('/newMsg', data => {
     addMessage(data, 'notMySms');
   });
-  
+
   // ========= new USER ============
-  
+
   socket.on('newUser', data => {
-    const { userName, shortName, id } = data;
+    const {
+      userName,
+      shortName,
+      id
+    } = data;
     console.log("newUser: ", data);
     drawParticipant(userName, shortName, id);
   });
@@ -120,24 +154,30 @@ function run() {
   socket.on('leaveUser', data => {
     console.log('leave: ', data);
     const allUsers = [...document.querySelectorAll('.participant')];
-    const userLeave = allUsers.find( user => user.dataset.id === data.id);
+    const userLeave = allUsers.find(user => user.dataset.id === data.id);
     console.log(userLeave);
     userLeave.remove();
   })
-  
+
   //  ======== USER TYPING ============
-  
+
   let counter = null;
   inputMsg.addEventListener('keypress', (e) => {
     clearTimeout(counter);
     counter = setTimeout(() => {
-      socket.emit('finishTyping', {userName, shortName})
-    }, 2000);
-    if(counter) {
-      socket.emit('typing', {userName, shortName});
+      socket.emit('finishTyping', {
+        userName,
+        shortName
+      })
+    }, 5000);
+    if (counter) {
+      socket.emit('typing', {
+        userName,
+        shortName
+      });
     }
   });
- 
+
   socket.on('userTyping', data => {
     findTypingUser(data.id).classList.remove('hidden');
   });
@@ -147,9 +187,3 @@ function run() {
   });
 
 }
-
-
-
-
-
-
